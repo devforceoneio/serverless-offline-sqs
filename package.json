@@ -12,6 +12,38 @@
     "url": "https://github.com/devforceoneio/serverless-offline-sqs/issues"
   },
   "homepage": "https://github.com/devforceoneio/serverless-offline-sqs#readme",
+  "files": [
+    "src/index.js",
+    "src/sqs.js",
+    "src/sqs-event.js",
+    "src/sqs-event-definition.js"
+  ],
   "author": "DevForceOne",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "peerDependencies": {
+    "serverless-offline": "^10.0.2 || >=11"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.940.0",
+    "lodash": "^4.17.21",
+    "p-queue": "^6.6.2",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "serverless-offline": "^13"
+  },
+  "keywords": [
+    "sqs",
+    "elasticmq",
+    "serverless",
+    "serverless-offline",
+    "lambda",
+    "aws-sdk-v3"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
