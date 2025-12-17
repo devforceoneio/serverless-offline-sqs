@@ -1,0 +1,17 @@
+{
+  "name": "@devforceoneio/serverless-offline-sqs",
+  "version": "8.1.0",
+  "description": "Emulate AWS λ and SQS locally when developing your Serverless project (AWS SDK v3 compatible)",
+  "main": "src",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:devforceoneio/serverless-offline-sqs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/devforceoneio/serverless-offline-sqs/issues"
+  },
+  "homepage": "https://github.com/devforceoneio/serverless-offline-sqs#readme",
+  "author": "DevForceOne",
+  "license": "MIT"
+}
