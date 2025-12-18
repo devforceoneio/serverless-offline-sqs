@@ -1,5 +1,16 @@
 # Changelog
 
+## 8.1.1 - ElasticMQ QueueNameExists Error Handling
+
+### Fixed
+- Enhanced error handling in `_createQueue` to gracefully handle `QueueNameExists` errors from ElasticMQ
+- Added support for both `QueueNameExists` and `QueueAlreadyExists` error codes/names
+- Improved logging to indicate when queues are skipped due to pre-creation
+
+### Changed
+- Updated error detection to handle ElasticMQ's specific error format
+- Added clarifying comments about when `_createQueue` is called
+
 ## 8.1.0 - AWS SDK v3 Migration
 
 ### Changed

@@ -435,6 +435,8 @@ class SQS {
   }
 
   async _createQueue({ queueName }, remainingTry = 5) {
+    // This method is only called when autoCreate: true
+    // If autoCreate: false, queues should be pre-created by external script
     const isElasticMQ =
       this.options.endpoint && this.options.endpoint.includes('localhost:9324');
 
@@ -475,19 +477,25 @@ class SQS {
       }
     } catch (err) {
       // Check for queue already exists error
+      // ElasticMQ may return QueueNameExists or QueueAlreadyExists
       const isQueueExistsError =
         err.name === 'QueueAlreadyExists' ||
         err.name === 'AWS.SimpleQueueService.QueueAlreadyExists' ||
         err.name === 'QueueAlreadyExistsException' ||
+        err.name === 'QueueNameExists' ||
+        err.name === 'AWS.SimpleQueueService.QueueNameExists' ||
         err.code === 'QueueAlreadyExists' ||
         err.code === 'AWS.SimpleQueueService.QueueAlreadyExists' ||
+        err.code === 'QueueNameExists' ||
+        err.code === 'AWS.SimpleQueueService.QueueNameExists' ||
         (err.message &&
           (err.message.includes('already exists') ||
-            err.message.includes('QueueAlreadyExists')));
+            err.message.includes('QueueAlreadyExists') ||
+            err.message.includes('QueueNameExists')));
 
       if (isQueueExistsError) {
-        // Queue already exists, that's fine
-        log.debug(`Queue ${queueName} already exists`);
+        // Queue already exists, that's fine (likely pre-created by script)
+        log.debug(`Queue ${queueName} already exists (skipping creation)`);
         return;
       }
 
